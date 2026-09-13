@@ -1,0 +1,128 @@
+/* ================================
+   RESET & BASE
+   ================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    color: #2c3e50;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+
+/* ================================
+   HEADER
+   ================================ */
+.header {
+    text-align: center; padding: 20px; background: white;
+    border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px;
+}
+.header h1 { color: #2e7d32; font-size: 2em; margin-bottom: 8px; }
+.subtitle { color: #558b2f; font-size: 1.1em; }
+
+/* ================================
+   LAYOUT UTAMA
+   ================================ */
+.main-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+@media (max-width: 1024px) { .main-layout { grid-template-columns: 1fr; } }
+
+/* ================================
+   PANEL UMUM
+   ================================ */
+.status-panel, .sawah-visual, .chart-section, .control-panel {
+    background: white; border-radius: 12px; padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px;
+}
+.status-panel h2, .sawah-visual h2, .chart-section h2, .control-panel h2 {
+    color: #2e7d32; margin-bottom: 15px; font-size: 1.2em; border-bottom: 2px solid #e8f5e9; padding-bottom: 8px;
+}
+
+/* ================================
+   KARTU POPULASI
+   ================================ */
+.population-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; }
+.pop-card { padding: 15px; border-radius: 10px; text-align: center; transition: transform 0.2s ease; }
+.pop-card:hover { transform: translateY(-3px); }
+.pop-icon { font-size: 2.5em; margin-bottom: 8px; }
+.pop-label { font-weight: 600; color: #555; margin-bottom: 5px; font-size: 0.9em; }
+.pop-value { font-size: 1.8em; font-weight: bold; color: #1b5e20; margin-bottom: 5px; }
+.pop-energy { font-size: 0.8em; color: #777; font-style: italic; }
+
+.pop-card.producer { background: linear-gradient(135deg, #c8e6c9, #a5d6a7); }
+.pop-card.consumer-1 { background: linear-gradient(135deg, #fff9c4, #fff59d); }
+.pop-card.consumer-2 { background: linear-gradient(135deg, #ffccbc, #ffab91); }
+.pop-card.consumer-2-alt { background: linear-gradient(135deg, #d1c4e9, #b39ddb); }
+
+/* ================================
+   VISUALISASI SAWAH
+   ================================ */
+.sawah-canvas {
+    height: 180px; border-radius: 10px; display: flex; align-items: center;
+    justify-content: center; transition: background 1s ease; position: relative;
+}
+.sawah-canvas.healthy { background: linear-gradient(135deg, #81c784, #4caf50); }
+.sawah-canvas.stressed { background: linear-gradient(135deg, #ffb74d, #ff9800); }
+.sawah-canvas.critical { background: linear-gradient(135deg, #e57373, #d32f2f); }
+.sawah-canvas.dead { background: linear-gradient(135deg, #8d6e63, #5d4037); }
+
+.sawah-label {
+    background: rgba(255,255,255,0.95); padding: 12px 25px; border-radius: 8px;
+    font-size: 1.3em; font-weight: bold; color: #2c3e50; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* ================================
+   PANEL KONTROL & TOMBOL
+   ================================ */
+.control-hint { color: #666; font-style: italic; margin-bottom: 15px; font-size: 0.9em; }
+
+.scenario-buttons { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+.scenario-btn {
+    padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 8px; background: white;
+    cursor: pointer; font-size: 0.95em; text-align: left; transition: all 0.2s ease; font-weight: 500;
+}
+.scenario-btn:hover { transform: translateX(5px); border-color: #2e7d32; }
+.scenario-btn.active { background: #e8f5e9; border-color: #2e7d32; box-shadow: 0 2px 8px rgba(46,125,50,0.2); }
+.scenario-btn.danger { border-left: 4px solid #d32f2f; }
+.scenario-btn.warning { border-left: 4px solid #f57c00; }
+.scenario-btn.success { border-left: 4px solid #388e3c; }
+
+.action-buttons { display: flex; gap: 10px; margin-bottom: 20px; }
+.btn-primary, .btn-secondary {
+    flex: 1; padding: 12px; border: none; border-radius: 8px; font-size: 1em; font-weight: 600; cursor: pointer; transition: all 0.2s ease;
+}
+.btn-primary { background: #2e7d32; color: white; }
+.btn-primary:hover { background: #1b5e20; transform: translateY(-2px); }
+.btn-secondary { background: #f5f5f5; color: #555; border: 2px solid #e0e0e0; }
+.btn-secondary:hover { background: #e0e0e0; }
+
+/* ================================
+   PESAN INLINE & LOG
+   ================================ */
+.inline-message {
+    padding: 12px 16px; border-radius: 8px; margin-bottom: 15px; font-weight: 600;
+    text-align: center; font-size: 0.95em; animation: fadeIn 0.3s ease;
+}
+.inline-message.warning { background: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+.inline-message.danger { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+.log-section { background: #fafafa; border-radius: 8px; padding: 15px; margin-bottom: 15px; max-height: 250px; overflow-y: auto; }
+.log-section h3 { color: #2e7d32; margin-bottom: 10px; font-size: 1.1em; }
+.log-content { font-family: 'Courier New', monospace; font-size: 0.85em; }
+.log-entry { padding: 8px; border-left: 3px solid #4caf50; background: white; margin-bottom: 8px; border-radius: 4px; }
+.log-entry.danger { border-left-color: #d32f2f; background: #ffebee; }
+.log-entry.warning { border-left-color: #f57c00; background: #fff3e0; }
+.log-empty { color: #999; font-style: italic; text-align: center; padding: 10px; }
+
+/* ================================
+   INFO BOX
+   ================================ */
+.info-box {
+    background: #e3f2fd; border-left: 4px solid #1976d2; padding: 15px; border-radius: 8px;
+}
+.info-box h3 { color: #1565c0; margin-bottom: 8px; font-size: 1em; }
+.info-box p { font-size: 0.9em; color: #0d47a1; }
